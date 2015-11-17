@@ -4,7 +4,8 @@ import android.app.DatePickerDialog;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,21 +14,15 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.appmedica.loginregister.R;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Calendar;
-import java.util.LinkedHashMap;
-import java.util.Map;
+
+import utilidades.API;
+import utilidades.Validacion;
 
 public class Register extends AppCompatActivity implements View.OnClickListener{
 
@@ -37,6 +32,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     Spinner spinner;
     Button btnRegistrar;
     String[] tiposSangre = {"O+", "O-", "A+","A-","B+","B-","AB+","AB-"};
+    API api = API.getInstance();
+    Validacion validacion = Validacion.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +67,53 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             StrictMode.setThreadPolicy(policy);
         }
 
+        etUsuario.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                validacion.esUsuarioValido(etUsuario,true);
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+        });
+
+        etContras.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                validacion.esPassValido(etContras);
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+        });
+
+        etNombre.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                validacion.esNombreValido(etNombre,true);
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+        });
+
+        etApellido.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                validacion.esNombreValido(etApellido, true);
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+        });
+
+        etTelefono.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                validacion.esTelefonoValido(etTelefono,true);
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+        });
+
+        etCorreo.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                validacion.esCorreoValido(etCorreo, true);
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+        });
 
     }
 
@@ -82,26 +126,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                 btnFechaHandler();
                 break;
             case R.id.btnRegistrar_AReg:
-                int radioButtonID = rgGrupo.getCheckedRadioButtonId();
-                RadioButton radioButton = (RadioButton)rgGrupo.findViewById(radioButtonID);
-                String sexo;
-                if (radioButton.getText().toString().equals("Masculino"))
-                    sexo="M";
-                else
-                    sexo="F";
-                try
-                {
-                    request(etUsuario.getText().toString(),etContras.getText().toString(),
-                            etTelefono.getText().toString(),etCorreo.getText().toString(),
-                            etNombre.getText().toString(),etApellido.getText().toString(),
-                            sexo,etFecha.getText().toString(),
-                            spinner.getSelectedItem().toString()
-                            );
-
-                } catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
+                btnRegistrarHandler();
                 break;
 
 
@@ -110,55 +135,89 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
     }
 
-    public static void request(String username,String password, String telefono, String email,
-                               String nombre, String apellido, String sexo, String fecha_nacimiento,
-                               String tipo_sangre) throws IOException{
 
-        Map<String,Object> params = new LinkedHashMap<>();
-        params.put("username", username);
-        params.put("password", password);
-        params.put("telefono", telefono);
-        params.put("email", email);
-        params.put("nombre", nombre);
-        params.put("apellido", apellido);
-        params.put("sexo", sexo);
-        params.put("fecha_nacimiento",fecha_nacimiento);
-        params.put("tipo_sangre", tipo_sangre);
-        StringBuilder postData = new StringBuilder();
-        for (Map.Entry<String,Object> param : params.entrySet()) {
-            if (postData.length() != 0) postData.append('&');
-            postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
-            postData.append('=');
-            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+    private  void btnRegistrarHandler(){
+        if (!camposEstanValidos())
+        {
+            return;
         }
-        Log.d("Test1",postData.toString());
-        String urlParameters  = postData.toString();
-        byte[] postData2       = urlParameters.getBytes();
-        int    postDataLength = postData2.length;
-        String request        = "http://testx-isc434.herokuapp.com/api/request_registro";
-        System.out.println("shieeet");
-        URL    url            = new URL( request );
-        HttpURLConnection conn= (HttpURLConnection) url.openConnection();
-        conn.setDoOutput( true );
-        conn.setInstanceFollowRedirects(false);
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        conn.setRequestProperty( "charset", "utf-8");
-        conn.setRequestProperty("Content-Length", Integer.toString(postDataLength));
-        conn.setUseCaches(false);
-         DataOutputStream wr = new DataOutputStream( conn.getOutputStream());
-            wr.write(postData2);
-            Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-            for ( int c = in.read(); c != -1; c = in.read() )
-                Log.d("hey!",String.valueOf((char)c));
+        else
+        {
+            int radioButtonID = rgGrupo.getCheckedRadioButtonId();
+            RadioButton radioButton = (RadioButton) rgGrupo.findViewById(radioButtonID);
+            String sexo;
+            if (radioButton.getText().toString().equals("Masculino"))
+                sexo = "M";
+            else
+                sexo = "F";
+            try
+            {
+                api.request_registro(etUsuario.getText().toString(), etContras.getText().toString(),
+                        etTelefono.getText().toString(), etCorreo.getText().toString(),
+                        etNombre.getText().toString(), etApellido.getText().toString(),
+                        sexo, etFecha.getText().toString(),
+                        spinner.getSelectedItem().toString()
+                );
 
-
-
-
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
     }
 
+    private boolean camposEstanValidos(){
+        int duracion = Toast.LENGTH_SHORT;
+        boolean ret = true;
+        Toast toast = Toast.makeText(getApplicationContext(), "Revise los campos invalidos o llene los que estan vacios.", duracion);
+        if (!validacion.esCorreoValido(etCorreo, true))
+        {
+
+            toast.show();
+            ret = false;
+        }
+        if (!validacion.esNombreValido(etNombre, true))
+        {
+            toast.show();
+            ret = false;
+        }
+        if (!validacion.esNombreValido(etApellido,true))
+        {
+            toast.show();
+            ret = false;
+        }
+        if (!validacion.esTelefonoValido(etTelefono, true))
+        {
+            toast.show();
+            ret = false;
+        }
+        if (!validacion.esUsuarioValido(etUsuario, true))
+        {
+            toast.show();
+            ret = false;
+        }
+        if (!validacion.esFechaValida(etFecha))
+        {
+            toast.show();
+            ret = false;
+        }
+        if (!validacion.esFechaValida(etFecha))
+        {
+            toast.show();
+            ret = false;
+        }
+        if (!validacion.esPassValido(etContras))
+        {
+            toast.show();
+            ret = false;
+        }
+
+
+        return ret;
+    }
 
     private void btnFechaHandler(){
+
         final Calendar c = Calendar.getInstance();
         int anio = c.get(Calendar.YEAR) - 20;
         int mes= c.get(Calendar.MONTH);
@@ -172,11 +231,18 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                         // Setear valor en editText
                         etFecha.setText((monthOfYear + 1)+ "-"
                                 + dayOfMonth  + "-" + year);
+                        etFecha.setError(null);
                     }
                 }, anio, mes, dia);
         dpd.show();
 
+
+
     }
+
+
+
+
 }
 
 

@@ -6,13 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.appmedica.loginregister.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    Button bLogout;
-    EditText etNombre,etEdad, etUsername;
+    Button btnIngresar;
+    EditText etUsuario,etContra;
+    TextView tvRegistrar;
 
 
     @Override
@@ -20,13 +22,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
-        etNombre = (EditText) findViewById(R.id.etNombre_AReg);
-        etUsername = (EditText)findViewById(R.id.etUsername);
+        etUsuario = (EditText) findViewById(R.id.etUsuario_AMain);
+        etContra = (EditText)findViewById(R.id.etContra_AMain);
+        tvRegistrar = (TextView) findViewById(R.id.tvRegistro_AMain);
 
-        bLogout = (Button) findViewById(R.id.bLogout);
+        btnIngresar = (Button) findViewById(R.id.bLogin_AMain);
 
-        bLogout.setOnClickListener(this);
-
+        btnIngresar.setOnClickListener(this);
+        tvRegistrar.setOnClickListener(this);
 
     }
 
@@ -34,7 +37,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.bLogout:
+            case R.id.bLogin_AMain:
+               // startActivity(new Intent(this,Register.class));
+                break;
+            case R.id.tvRegistro_AMain:
                 startActivity(new Intent(this,Register.class));
                 break;
         }
