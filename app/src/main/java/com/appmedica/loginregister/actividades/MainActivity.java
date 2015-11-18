@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnIngresar;
     EditText etUsuario,etContra;
     TextView tvRegistrar;
+    Button bMapa;
 
 
     @Override
@@ -27,7 +28,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvRegistrar = (TextView) findViewById(R.id.tvRegistro_AMain);
 
         btnIngresar = (Button) findViewById(R.id.bLogin_AMain);
-
+        bMapa = (Button) findViewById(R.id.bMapa);
+        bMapa.setOnClickListener(this);
         btnIngresar.setOnClickListener(this);
         tvRegistrar.setOnClickListener(this);
 
@@ -43,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tvRegistro_AMain:
                 startActivity(new Intent(this,Register.class));
                 break;
+	     case R.id.bMapa:
+                startActivity(new Intent(this,Login.class));
+                break;	
         }
     }
 }
