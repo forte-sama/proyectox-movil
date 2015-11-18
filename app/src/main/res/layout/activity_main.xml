@@ -18,6 +18,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="31dp"/>
 
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:text="MAPA"
+        android:id="@+id/bMapa"
+        android:background="#929292"
+        android:layout_above="@+id/textView"
+        android:layout_alignLeft="@+id/bLogout"
+        android:layout_alignStart="@+id/bLogout" />
+
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
