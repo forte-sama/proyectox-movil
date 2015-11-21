@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.appmedica.loginregister.R;
 
+import utilidades.API;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button btnIngresar;
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
