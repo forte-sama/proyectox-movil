@@ -1,6 +1,7 @@
 package com.appmedica.loginregister.actividades;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -26,7 +28,6 @@ import utilidades.Validacion;
 
 public class Register extends AppCompatActivity implements View.OnClickListener{
 
-    Button bFecha;
     EditText etNombre, etApellido, etFecha, etTelefono, etUsuario, etContras, etCorreo;
     RadioGroup rgGrupo;
     Spinner spinner;
@@ -34,9 +35,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     String[] tiposSangre = {"O+", "O-", "A+","A-","B+","B-","AB+","AB-"};
     API api = API.getInstance();
     Validacion validacion = Validacion.getInstance();
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         getSupportActionBar().setTitle("Registro de Usuario");
@@ -67,52 +70,69 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             StrictMode.setThreadPolicy(policy);
         }
 
-        etUsuario.addTextChangedListener(new TextWatcher() {
-            public void afterTextChanged(Editable s) {
-                validacion.esUsuarioValido(etUsuario,true);
+        etUsuario.setOnFocusChangeListener(new View.OnFocusChangeListener()
+        {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus)
+            {
+                if (!hasFocus)
+                    validacion.esUsuarioValido(etUsuario, true);
             }
-            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
-            public void onTextChanged(CharSequence s, int start, int before, int count){}
         });
 
-        etContras.addTextChangedListener(new TextWatcher() {
-            public void afterTextChanged(Editable s) {
-                validacion.esPassValido(etContras);
+        etContras.setOnFocusChangeListener(new View.OnFocusChangeListener()
+        {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus)
+            {
+                if (!hasFocus)
+                    validacion.esPassValido(etContras);
             }
-            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
-            public void onTextChanged(CharSequence s, int start, int before, int count){}
         });
 
-        etNombre.addTextChangedListener(new TextWatcher() {
-            public void afterTextChanged(Editable s) {
-                validacion.esNombreValido(etNombre,true);
+        etNombre.setOnFocusChangeListener(new View.OnFocusChangeListener()
+        {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus)
+            {
+                if (!hasFocus)
+                    validacion.esNombreValido(etNombre, true);
             }
-            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
-            public void onTextChanged(CharSequence s, int start, int before, int count){}
         });
 
-        etApellido.addTextChangedListener(new TextWatcher() {
-            public void afterTextChanged(Editable s) {
-                validacion.esNombreValido(etApellido, true);
+        etApellido.setOnFocusChangeListener(new View.OnFocusChangeListener()
+        {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus)
+            {
+                if (!hasFocus)
+                    validacion.esNombreValido(etApellido, true);
             }
-            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
-            public void onTextChanged(CharSequence s, int start, int before, int count){}
         });
 
-        etTelefono.addTextChangedListener(new TextWatcher() {
-            public void afterTextChanged(Editable s) {
-                validacion.esTelefonoValido(etTelefono,true);
+        etTelefono.setOnFocusChangeListener(new View.OnFocusChangeListener()
+        {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus)
+            {
+                if (!hasFocus)
+                    validacion.esTelefonoValido(etTelefono, true);
             }
-            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
-            public void onTextChanged(CharSequence s, int start, int before, int count){}
         });
 
-        etCorreo.addTextChangedListener(new TextWatcher() {
-            public void afterTextChanged(Editable s) {
-                validacion.esCorreoValido(etCorreo, true);
+        etCorreo.setOnFocusChangeListener(new View.OnFocusChangeListener()
+        {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus)
+            {
+                if (!hasFocus)
+                    validacion.esCorreoValido(etCorreo,true);
             }
-            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
-            public void onTextChanged(CharSequence s, int start, int before, int count){}
         });
 
     }
@@ -145,24 +165,29 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         {
             int radioButtonID = rgGrupo.getCheckedRadioButtonId();
             RadioButton radioButton = (RadioButton) rgGrupo.findViewById(radioButtonID);
-            String sexo;
+            final String sexo;
             if (radioButton.getText().toString().equals("Masculino"))
                 sexo = "M";
             else
                 sexo = "F";
-            try
-            {
-                api.request_registro(etUsuario.getText().toString(), etContras.getText().toString(),
-                        etTelefono.getText().toString(), etCorreo.getText().toString(),
-                        etNombre.getText().toString(), etApellido.getText().toString(),
-                        sexo, etFecha.getText().toString(),
-                        spinner.getSelectedItem().toString()
-                );
+            progressDialog = ProgressDialog.show(this, "", "Registrando... ");
+            new Thread() {
+                public void run() {
 
-            } catch (IOException e)
-            {
-                e.printStackTrace();
-            }
+                    api.request_registro(etUsuario.getText().toString(), etContras.getText().toString(),
+                            etTelefono.getText().toString(), etCorreo.getText().toString(),
+                            etNombre.getText().toString(), etApellido.getText().toString(),
+                            sexo, etFecha.getText().toString(),
+                            spinner.getSelectedItem().toString()
+                        );
+                    progressDialog.cancel();
+
+
+                }
+            }.start();
+
+
+
         }
     }
 
