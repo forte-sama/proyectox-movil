@@ -2,17 +2,15 @@ package com.appmedica.loginregister.actividades;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.os.Looper;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -20,7 +18,6 @@ import android.widget.Toast;
 
 import com.appmedica.loginregister.R;
 
-import java.io.IOException;
 import java.util.Calendar;
 
 import utilidades.API;
@@ -173,7 +170,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             progressDialog = ProgressDialog.show(this, "", "Registrando... ");
             new Thread() {
                 public void run() {
-
                     api.request_registro(etUsuario.getText().toString(), etContras.getText().toString(),
                             etTelefono.getText().toString(), etCorreo.getText().toString(),
                             etNombre.getText().toString(), etApellido.getText().toString(),
@@ -221,12 +217,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             toast.show();
             ret = false;
         }
-        if (!validacion.esFechaValida(etFecha))
+        if (!validacion.tieneTexto(etFecha))
         {
             toast.show();
             ret = false;
         }
-        if (!validacion.esFechaValida(etFecha))
+        if (!validacion.tieneTexto(etFecha))
         {
             toast.show();
             ret = false;

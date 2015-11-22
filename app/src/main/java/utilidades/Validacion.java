@@ -50,7 +50,7 @@ public class Validacion {
         return esValido(editText, USUARIO_REGEX, USUARIO_MSG, required);
     }
 
-    public static boolean esFechaValida(EditText editText) {
+    public static boolean tieneTexto(EditText editText) {
         return hasText(editText);
     }
 

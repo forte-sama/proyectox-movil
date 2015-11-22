@@ -19,6 +19,8 @@ import java.net.URLEncoder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import Modelos.MensajeLogin;
+import Modelos.MensajeServer;
 import Modelos.UsuarioMovil;
 
 /**
@@ -27,6 +29,7 @@ import Modelos.UsuarioMovil;
 public class API
 {
     private static API instance = null;
+    private static final String API_URL = "http://testx-isc434.herokuapp.com/api/";
     protected API() {
 
     }
@@ -39,16 +42,39 @@ public class API
 
 
 
-    public static void request_registro(String username,String password, String telefono, String email,
+    public static String request_registro(String username,String password, String telefono, String email,
                                         String nombre, String apellido, String sexo, String fecha_nacimiento,
                                         String tipo_sangre){
-        HttpURLConnection httpcon;
-        String url = "http://testx-isc434.herokuapp.com/api/request_registro";
-        UsuarioMovil lol = new UsuarioMovil(nombre,apellido,username,password,telefono,email,sexo,fecha_nacimiento,tipo_sangre);
+
+        String url = API_URL+"request_registro";
+        UsuarioMovil user = new UsuarioMovil(nombre,apellido,username,password,telefono,email,sexo,fecha_nacimiento,tipo_sangre);
         Gson gson = new Gson();
-        String data = gson.toJson(lol);
+        String data = gson.toJson(user);
         Log.d("jesus",data);
-       // String data =" {\"username\":\"sadddddddsulo\",\"password\":\"asdfasdf\",\"telefono\":\"564-445-4555\",\"email\":\"email@mmg.com\",\"nombre\":\"nombre\",\"apellido\":\"apellido\",\"sexo\":\"M\",\"fecha_nacimiento\":\"11-10-2003\",\"cod_usuario_movil\":null,\"tipo_sangre\":\"O+\"}";
+
+        String result = conexion_http(url,data) ;
+        Log.d("jesus",result);
+        return result;
+    }
+
+    public static MensajeServer request_login(String username,String password){
+
+        String url = API_URL+"request_login";
+        MensajeLogin msg = new MensajeLogin(username,password);
+        Gson gson = new Gson();
+        String data = gson.toJson(msg);
+        Log.d("jesus",data);
+
+        String result = conexion_http(url, data);
+        Log.d("jesus",result);
+        MensajeServer mensaje = gson.fromJson(result, MensajeServer.class);
+
+        Log.d("jesus",mensaje.toString());
+        return mensaje;
+    }
+
+    private static String conexion_http(String url, String json_request){
+        HttpURLConnection httpcon;
         String result = null;
         try{
 //Connect
@@ -62,7 +88,7 @@ public class API
 //Write
             OutputStream os = httpcon.getOutputStream();
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-            writer.write(data);
+            writer.write(json_request);
             writer.close();
             os.close();
 
@@ -78,20 +104,15 @@ public class API
 
             br.close();
             result = sb.toString();
-            Log.d("jesus2",result);
 
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return result;
     }
 
-    public void test(){
-        UsuarioMovil lol = new UsuarioMovil("Manuel","Saleta","jozu789","1234","809-583-8274","manus@gmail.com","M","12-12-2003","O+");
-        Gson gson = new Gson();
-        String json = gson.toJson(lol);
-        Log.d("jesus",json);
-    }
+
 
 }
