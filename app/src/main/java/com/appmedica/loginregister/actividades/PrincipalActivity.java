@@ -1,9 +1,13 @@
 package com.appmedica.loginregister.actividades;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.appmedica.loginregister.R;
 
@@ -15,6 +19,17 @@ public class PrincipalActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+        getSupportActionBar().setTitle("Proyecto X");
+
+    }
+
+    public void logout(View v){
+        SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.PREFERENCIAS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.clear();
+        editor.commit();
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 
     @Override

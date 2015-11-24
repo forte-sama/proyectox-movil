@@ -42,7 +42,7 @@ public class API
 
 
 
-    public static String request_registro(String username,String password, String telefono, String email,
+    public static MensajeServer request_registro(String username,String password, String telefono, String email,
                                         String nombre, String apellido, String sexo, String fecha_nacimiento,
                                         String tipo_sangre){
 
@@ -52,9 +52,12 @@ public class API
         String data = gson.toJson(user);
         Log.d("jesus",data);
 
-        String result = conexion_http(url,data) ;
+        String result = conexion_http(url, data) ;
         Log.d("jesus",result);
-        return result;
+        MensajeServer mensaje = gson.fromJson(result, MensajeServer.class);
+
+        Log.d("jesus",mensaje.toString());
+        return mensaje;
     }
 
     public static MensajeServer request_login(String username,String password){

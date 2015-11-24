@@ -2,6 +2,8 @@ package com.appmedica.loginregister.actividades;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Looper;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +22,7 @@ import com.appmedica.loginregister.R;
 
 import java.util.Calendar;
 
+import Modelos.MensajeServer;
 import utilidades.API;
 import utilidades.Validacion;
 
@@ -167,22 +170,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                 sexo = "M";
             else
                 sexo = "F";
-            progressDialog = ProgressDialog.show(this, "", "Registrando... ");
-            new Thread() {
-                public void run() {
-                    api.request_registro(etUsuario.getText().toString(), etContras.getText().toString(),
-                            etTelefono.getText().toString(), etCorreo.getText().toString(),
-                            etNombre.getText().toString(), etApellido.getText().toString(),
-                            sexo, etFecha.getText().toString(),
-                            spinner.getSelectedItem().toString()
-                        );
-                    progressDialog.cancel();
-
-
-                }
-            }.start();
-
-
+            Asincrono asinc = new Asincrono(this);
+            asinc.execute(etUsuario.getText().toString(), etContras.getText().toString(),
+                    etTelefono.getText().toString(), etCorreo.getText().toString(),
+                    etNombre.getText().toString(), etApellido.getText().toString(),
+                    sexo, etFecha.getText().toString(),
+                    spinner.getSelectedItem().toString());
 
         }
     }
@@ -259,6 +252,59 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
 
 
+    }
+
+    private class Asincrono extends AsyncTask<String,Void,MensajeServer>
+    {
+        private Register contexto;
+        ProgressDialog progressDialog;
+        public Asincrono(Register contexto)
+        {
+            super();
+            this.contexto = contexto;
+        }
+
+        @Override
+        protected void onPreExecute()
+        {
+            progressDialog = ProgressDialog.show(contexto, "", "Registrando... ");
+        }
+
+        @Override
+        protected MensajeServer doInBackground(String... params)
+        {
+
+            MensajeServer resultado=API.getInstance().request_registro(params[0], params[1],params[2],params[3],
+                                                                        params[4], params[5],params[6],params[7],
+                                                                        params[8]);
+            return resultado;
+
+        }
+
+        @Override
+        protected void onPostExecute(MensajeServer mensajeServer)
+        {
+            super.onPostExecute(mensajeServer);
+            progressDialog.dismiss();
+
+            switch(mensajeServer.cod_error)
+            {
+                case 0:
+                    contexto.startActivity(new Intent(contexto, PrincipalActivity.class));
+                    finish();
+                    break;
+                case 2:
+                    contexto.etUsuario.setError("Este usuario ya existe.");
+                    break;
+                case 3:
+                    contexto.etCorreo.setError("Alguien se ha registrado utilizando este correo.");
+                    break;
+                case 4:
+                    contexto.etCorreo.setError("Alguien se ha registrado utilizando este correo.");
+                    contexto.etUsuario.setError("Este usuario ya existe.");
+                    break;
+            }
+        }
     }
 
 

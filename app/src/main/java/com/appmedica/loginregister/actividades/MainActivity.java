@@ -3,6 +3,7 @@ package com.appmedica.loginregister.actividades;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Looper;
 import android.os.StrictMode;
@@ -29,6 +30,9 @@ import utilidades.Validacion;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    public static final String PREFERENCIAS = "session" ;
+    public static final String USUARIO = "username";
+    SharedPreferences sharedpreferences;
     Button btnIngresar;
     EditText etUsuario,etContra;
     TextView tvRegistrar;
@@ -41,7 +45,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        sharedpreferences = getSharedPreferences(PREFERENCIAS, Context.MODE_PRIVATE);
+        if (!sharedpreferences.getString(USUARIO,"").equals(""))
+        {
+            startActivity(new Intent(this, PrincipalActivity.class));
+            finish();
+        }
+        Log.d("jesus","No preferences");
+        Log.d("jesus",sharedpreferences.getString(USUARIO,""));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
@@ -56,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvRegistrar.setOnClickListener(this);
 
 
+
     }
 
     private  void btnRegistrarHandler(){
@@ -66,9 +78,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             Asincrono asinc = new Asincrono(this);
             asinc.execute(etUsuario.getText().toString(), etContra.getText().toString());
-
-
-
         }
 
     }
@@ -90,63 +99,60 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private boolean camposEstanValidos(){
-        int duracion = Toast.LENGTH_SHORT;
+
         boolean ret = true;
-        Toast toast = Toast.makeText(getApplicationContext(), "Revise los campos invalidos o llene los que estan vacios.", duracion);
 
         if (!validacion.esPassValido(this.etContra))
-        {
-            toast.show();
             ret = false;
-        }
-
         if (!validacion.tieneTexto(this.etUsuario))
-        {
-            toast.show();
             ret = false;
-        }
 
         return ret;
     }
+    private class Asincrono extends AsyncTask<String,Void,MensajeServer>
+    {
+        private MainActivity contexto;
+        ProgressDialog progressDialog;
+        public Asincrono(MainActivity contexto)
+        {
+            super();
+            this.contexto = contexto;
+        }
+
+        @Override
+        protected void onPreExecute()
+        {
+            progressDialog = ProgressDialog.show(contexto, "", "Iniciando sesion... ");
+        }
+
+        @Override
+        protected MensajeServer doInBackground(String... params)
+        {
+
+            MensajeServer resultado=API.getInstance().request_login(params[0], params[1]);
+
+            return resultado;
+
+        }
+
+        @Override
+        protected void onPostExecute(MensajeServer mensajeServer)
+        {
+            super.onPostExecute(mensajeServer);
+            progressDialog.dismiss();
+
+            if (mensajeServer.cod_error==0){
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString(USUARIO, contexto.etUsuario.getText().toString());
+                editor.commit();
+                contexto.startActivity(new Intent(contexto, PrincipalActivity.class));
+
+            }
+            else{
+                Toast.makeText(contexto, mensajeServer.mensaje, Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }
 
-class Asincrono extends AsyncTask<String,Void,MensajeServer>
-{
-    private MainActivity contexto;
-    ProgressDialog progressDialog;
-    public Asincrono(MainActivity contexto)
-    {
-        super();
-        this.contexto = contexto;
-    }
 
-    @Override
-    protected void onPreExecute()
-    {
-        progressDialog = ProgressDialog.show(contexto, "", "Iniciando sesion... ");
-    }
-
-    @Override
-    protected MensajeServer doInBackground(String... params)
-    {
-
-        MensajeServer resultado=API.getInstance().request_login(params[0], params[1]);
-
-        return resultado;
-
-    }
-
-    @Override
-    protected void onPostExecute(MensajeServer mensajeServer)
-    {
-        super.onPostExecute(mensajeServer);
-        progressDialog.dismiss();
-
-        if (mensajeServer.cod_error==0){
-            contexto.startActivity(new Intent(contexto, PrincipalActivity.class));
-        }
-        else{
-            Toast.makeText(contexto, mensajeServer.toString(), Toast.LENGTH_SHORT).show();
-        }
-    }
-}
