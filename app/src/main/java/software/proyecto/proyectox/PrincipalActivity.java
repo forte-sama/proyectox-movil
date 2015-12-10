@@ -1,4 +1,16 @@
-package com.appmedica.loginregister.actividades;
+package software.proyecto.proyectox;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+
+
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +21,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.appmedica.loginregister.R;
 
 public class PrincipalActivity extends AppCompatActivity
 {
@@ -19,7 +30,8 @@ public class PrincipalActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
-        getSupportActionBar().setTitle("Proyecto X");
+
+
 
     }
 
@@ -36,7 +48,7 @@ public class PrincipalActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu)
     {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_principal, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 

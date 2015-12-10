@@ -1,4 +1,4 @@
-package com.appmedica.loginregister;
+package software.proyecto.proyectox;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,4 +1,16 @@
-package com.appmedica.loginregister.actividades;
+package software.proyecto.proyectox;
+
+import android.location.Location;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+
+
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,7 +26,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.appmedica.loginregister.R;
+
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -25,24 +37,24 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class Login extends AppCompatActivity implements View.OnClickListener, GoogleMap.OnMyLocationChangeListener{
+public class Maps extends AppCompatActivity implements View.OnClickListener, GoogleMap.OnMyLocationChangeListener{
 
     GoogleMap mMap;
-  //  MapView mapView;
+    //  MapView mapView;
 
 
     @Override
     protected void onResume()
     {
         super.onResume();
-       // mapView.onResume();
+        // mapView.onResume();
     }
 
     @Override
     protected void onDestroy()
     {
         super.onDestroy();
-       // mapView.onDestroy();
+        // mapView.onDestroy();
 
     }
 
@@ -56,7 +68,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_maps);
         setUpMapIfNeeded();
         mMap.setOnMyLocationChangeListener(this);
 

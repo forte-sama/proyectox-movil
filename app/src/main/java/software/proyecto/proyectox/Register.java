@@ -1,4 +1,28 @@
-package com.appmedica.loginregister.actividades;
+package software.proyecto.proyectox;
+
+import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.StrictMode;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import java.util.Calendar;
+
+import utilidades.API;
+import utilidades.Validacion;
+
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -18,11 +42,11 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.appmedica.loginregister.R;
+
 
 import java.util.Calendar;
 
-import Modelos.MensajeServer;
+import modelos.MensajeServer;
 import utilidades.API;
 import utilidades.Validacion;
 
@@ -35,6 +59,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     String[] tiposSangre = {"O+", "O-", "A+","A-","B+","B-","AB+","AB-"};
     API api = API.getInstance();
     Validacion validacion = Validacion.getInstance();
+    Toolbar toolbar;
     private ProgressDialog progressDialog;
 
     @Override
@@ -42,7 +67,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        getSupportActionBar().setTitle("Registro de Usuario");
+
         etNombre = (EditText) findViewById(R.id.etNombre_AReg);
         etApellido =(EditText) findViewById(R.id.etApellido_AReg);
         etFecha = (EditText) findViewById(R.id.etFecha_AReg);
@@ -51,6 +76,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         etUsuario = (EditText) findViewById(R.id.etNombreUsuario_AReg);
         etContras = (EditText) findViewById(R.id.etContra_AReg);
         etCorreo = (EditText) findViewById(R.id.etCorreo_AReg);
+        toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        toolbar.setTitle("Registro");
         btnRegistrar = (Button) findViewById(R.id.btnRegistrar_AReg);
         btnRegistrar.setOnClickListener(this);
         RadioButton rb = (RadioButton)findViewById(R.id.rdbMasculino_AReg);
@@ -58,8 +85,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         rgGrupo = (RadioGroup) findViewById(R.id.radioGroup_AReg);
 
         ArrayAdapter<String> stringArrayAdapter= new ArrayAdapter<String>(this,
-                        android.R.layout.simple_spinner_dropdown_item,
-                        tiposSangre);
+                android.R.layout.simple_spinner_dropdown_item,
+                tiposSangre);
         spinner = (Spinner) findViewById(R.id.spinner_AReg);
         spinner.setAdapter(stringArrayAdapter);
 
@@ -275,8 +302,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         {
 
             MensajeServer resultado=API.getInstance().request_registro(params[0], params[1],params[2],params[3],
-                                                                        params[4], params[5],params[6],params[7],
-                                                                        params[8]);
+                    params[4], params[5],params[6],params[7],
+                    params[8]);
             return resultado;
 
         }
@@ -290,7 +317,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             switch(mensajeServer.cod_error)
             {
                 case 0:
-                    contexto.startActivity(new Intent(contexto, PrincipalActivity.class));
+                    contexto.startActivity(new Intent(contexto, FilasActivity.class));
                     finish();
                     break;
                 case 2:

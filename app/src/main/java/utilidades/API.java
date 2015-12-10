@@ -19,9 +19,9 @@ import java.net.URLEncoder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import Modelos.MensajeLogin;
-import Modelos.MensajeServer;
-import Modelos.UsuarioMovil;
+import modelos.MensajeLogin;
+import modelos.MensajeServer;
+import modelos.UsuarioMovil;
 
 /**
  * Created by Saleta on 11/17/2015.
@@ -43,8 +43,8 @@ public class API
 
 
     public static MensajeServer request_registro(String username,String password, String telefono, String email,
-                                        String nombre, String apellido, String sexo, String fecha_nacimiento,
-                                        String tipo_sangre){
+                                                 String nombre, String apellido, String sexo, String fecha_nacimiento,
+                                                 String tipo_sangre){
 
         String url = API_URL+"request_registro";
         UsuarioMovil user = new UsuarioMovil(nombre,apellido,username,password,telefono,email,sexo,fecha_nacimiento,tipo_sangre);

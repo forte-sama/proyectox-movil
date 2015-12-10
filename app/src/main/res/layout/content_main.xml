@@ -1,0 +1,75 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:background="#d4ced7">
+
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:text="Ingresar"
+        android:id="@+id/bLogin_AMain"
+        android:background="#929292"
+        android:layout_below="@+id/etContra_AMain"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:text="MAPA"
+        android:id="@+id/bMapa"
+        android:background="#929292"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/bLogin_AMain"
+        android:layout_alignStart="@+id/bLogin_AMain"/>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/imgIcono_AMain"
+        android:src="@mipmap/logo1"
+        android:layout_marginTop="77dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/etUsuario_AMain"
+        android:layout_below="@+id/imgIcono_AMain"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:textColor="#1f201e"
+        android:hint="Email o Nombre de Usuario"
+        android:imeOptions="actionNext"
+        android:inputType="textEmailAddress"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrarse a Proyecto X"
+        android:id="@+id/tvRegistro_AMain"
+        android:layout_marginBottom="35dp"
+        android:textColor="#010101"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/etContra_AMain"
+        android:hint="Contraseña"
+        android:layout_below="@+id/etUsuario_AMain"
+        android:layout_alignLeft="@+id/etUsuario_AMain"
+        android:layout_alignStart="@+id/etUsuario_AMain"
+        android:layout_marginTop="31dp"
+        android:imeOptions="actionSearch"/>
+
+</RelativeLayout>
+

@@ -1,12 +1,10 @@
-package com.appmedica.loginregister.actividades;
 
+package software.proyecto.proyectox;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.os.Looper;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,15 +14,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appmedica.loginregister.R;
+
 
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
-import Modelos.MensajeLogin;
-import Modelos.MensajeServer;
+import modelos.MensajeServer;
 import utilidades.API;
 import utilidades.Validacion;
 
@@ -48,14 +42,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sharedpreferences = getSharedPreferences(PREFERENCIAS, Context.MODE_PRIVATE);
         if (!sharedpreferences.getString(USUARIO,"").equals(""))
         {
-            startActivity(new Intent(this, PrincipalActivity.class));
+            startActivity(new Intent(this, FilasActivity.class));
             finish();
         }
+
         Log.d("jesus","No preferences");
         Log.d("jesus",sharedpreferences.getString(USUARIO,""));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
         etUsuario = (EditText) findViewById(R.id.etUsuario_AMain);
         etContra = (EditText)findViewById(R.id.etContra_AMain);
         tvRegistrar = (TextView) findViewById(R.id.tvRegistro_AMain);
@@ -92,9 +86,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tvRegistro_AMain:
                 startActivity(new Intent(this,Register.class));
                 break;
-	     case R.id.bMapa:
-                startActivity(new Intent(this,Login.class));
-                break;	
+            case R.id.bMapa:
+                startActivity(new Intent(this,Maps.class));
+                break;
         }
     }
 
