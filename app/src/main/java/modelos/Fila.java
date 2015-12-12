@@ -1,12 +1,31 @@
 package modelos;
 
 public class Fila {
-    private String nombreDoctor;
-    private String tituloDoctor;
-    private String horaLLegada;
-    private String tiempoRestante;
-    private String turnosRestantes;
+    private String nombre_doctor;
+    private String titulo_doctor;
+    private String hora_llegada;
+    private String tiempo_estimado;
+    private String tiempo_estimado_display;
+
+    public String getTiempo_estimado_display() {
+        return tiempo_estimado_display;
+    }
+
+    public void setTiempo_estimado_display(String tiempo_estimado_display) {
+        this.tiempo_estimado_display = tiempo_estimado_display;
+    }
+
+    private String turnos_restantes;
+    private String nombre_asistente;
     private String estado;
+
+    public String getNombre_asistente() {
+        return nombre_asistente;
+    }
+
+    public void setNombre_asistente(String nombre_asistente) {
+        this.nombre_asistente = nombre_asistente;
+    }
 
     public String getEstado() {
         return estado;
@@ -19,44 +38,44 @@ public class Fila {
     private float latitudDestino;
     private float longitudDestino;
 
-    public String getNombreDoctor() {
-        return nombreDoctor;
+    public String getNombre_doctor() {
+        return nombre_doctor;
     }
 
-    public void setNombreDoctor(String nombreDoctor) {
-        this.nombreDoctor = nombreDoctor;
+    public void setNombre_doctor(String nombre_doctor) {
+        this.nombre_doctor = nombre_doctor;
     }
 
-    public String getTituloDoctor() {
-        return tituloDoctor;
+    public String getTitulo_doctor() {
+        return titulo_doctor;
     }
 
-    public void setTituloDoctor(String tituloDoctor) {
-        this.tituloDoctor = tituloDoctor;
+    public void setTitulo_doctor(String titulo_doctor) {
+        this.titulo_doctor = titulo_doctor;
     }
 
     public String getHoraLLegada() {
-        return horaLLegada;
+        return hora_llegada;
     }
 
     public void setHoraLLegada(String horaLLegada) {
-        this.horaLLegada = horaLLegada;
+        this.hora_llegada = horaLLegada;
     }
 
-    public String getTiempoRestante() {
-        return tiempoRestante;
+    public String getTiempo_estimado() {
+        return tiempo_estimado;
     }
 
-    public void setTiempoRestante(String tiempoRestante) {
-        this.tiempoRestante = tiempoRestante;
+    public void setTiempo_estimado(String tiempo_estimado) {
+        this.tiempo_estimado = tiempo_estimado;
     }
 
-    public String getTurnosRestantes() {
-        return turnosRestantes;
+    public String getTurnos_restantes() {
+        return turnos_restantes;
     }
 
-    public void setTurnosRestantes(String turnosRestantes) {
-        this.turnosRestantes = turnosRestantes;
+    public void setTurnos_restantes(String turnos_restantes) {
+        this.turnos_restantes = turnos_restantes;
     }
 
     public float getLatitudDestino() {

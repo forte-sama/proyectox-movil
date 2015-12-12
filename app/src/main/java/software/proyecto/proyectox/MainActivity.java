@@ -15,9 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
+import modelos.Fila;
 import modelos.MensajeServer;
 import utilidades.API;
 import utilidades.Validacion;
@@ -47,7 +48,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         Log.d("jesus","No preferences");
-        Log.d("jesus",sharedpreferences.getString(USUARIO,""));
+        Log.d("jesus", sharedpreferences.getString(USUARIO, ""));
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         etUsuario = (EditText) findViewById(R.id.etUsuario_AMain);
@@ -124,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
 
             MensajeServer resultado=API.getInstance().request_login(params[0], params[1]);
-
             return resultado;
 
         }
@@ -139,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putString(USUARIO, contexto.etUsuario.getText().toString());
                 editor.commit();
-                contexto.startActivity(new Intent(contexto, PrincipalActivity.class));
+                contexto.startActivity(new Intent(contexto, FilasActivity.class));
 
             }
             else{

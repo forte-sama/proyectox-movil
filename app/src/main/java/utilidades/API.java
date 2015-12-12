@@ -16,11 +16,15 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
+import modelos.Fila;
 import modelos.MensajeLogin;
 import modelos.MensajeServer;
+import modelos.PeticionFila;
 import modelos.UsuarioMovil;
 
 /**
@@ -115,6 +119,24 @@ public class API
         }
         return result;
     }
+
+    public static List<Fila> request_filas(String username){
+        String url = API_URL+"request_info_fila";
+        PeticionFila pet = new PeticionFila(username);
+        Gson gson = new Gson();
+        String data = gson.toJson(pet);
+        Log.d("jesus",data);
+
+        String result = conexion_http(url, data) ;
+        Log.d("jesus",result);
+        Fila[] mensaje = gson.fromJson(result, Fila[].class);
+
+
+
+        return Arrays.asList(mensaje);
+    }
+
+
 
 
 

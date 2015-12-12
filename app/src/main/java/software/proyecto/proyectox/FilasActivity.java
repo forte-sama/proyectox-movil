@@ -164,29 +164,5 @@ public class FilasActivity extends AppCompatActivity {
         }
     }
 
-    public static  class FilasFragment extends Fragment  {
-        Button ClickMe;
-        String[] mobileArray = {"Android","IPhone","WindowsMobile","Blackberry","WebOS","Ubuntu","Windows7","Max OS X"};
-        private ListView listaFilas;
 
-        public static FilasFragment newInstance() {
-            FilasFragment fragment = new FilasFragment();
-            return fragment;
-        }
-
-        public FilasFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_filas, container, false);
-
-            listaFilas = (ListView) rootView.findViewById(R.id.mobile_list);
-            ArrayAdapter adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, mobileArray);
-            listaFilas.setAdapter(adapter);
-            return rootView;
-
-        }
-    }
 }
