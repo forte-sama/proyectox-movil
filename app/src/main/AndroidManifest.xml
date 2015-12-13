@@ -11,11 +11,6 @@
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.gsf.permission.READ_GSERVICES" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <permission android:name="software.proyecto.proyectox.permission.C2D_MESSAGE"
-        android:protectionLevel="signature" />
-    <uses-permission android:name="software.proyecto.proyectox.permission.C2D_MESSAGE" />
 
 
     <application
@@ -54,19 +49,23 @@
             android:label="@string/title_activity_main2"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".Maps" />
-
-
-        <receiver
-            android:name="com.google.android.gms.gcm.GcmReceiver"
-            android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND" >
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-                <category android:name="software.proyecto.proyectox" />
-            </intent-filter>
-        </receiver>
-
+        <activity
+            android:name=".FilaDetalleActivity"
+            android:label="@string/title_activity_fila_detalle"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".EdicionActivity"
+            android:label="@string/title_activity_edicion"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".DatosMedicosActivity"
+            android:label="@string/title_activity_datos_medicos"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+>>>>>>> T#95,100 diseno de la pantalla de edicion y calculo de distancia entre dos cordenada
     </application>
 
 </manifest>

@@ -7,6 +7,8 @@
     <string name="title_activity_filas">FilasActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_main2">Main2Activity</string>
-    <string name="title_activity_main3">Main3Activity</string>
-    <string name="sender_id">1008047344932</string>
+    <string name="title_activity_fila_detalle">FilaDetalleActivity</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="title_activity_edicion">EdicionActivity</string>
+    <string name="title_activity_datos_medicos">DatosMedicosActivity</string>
 </resources>

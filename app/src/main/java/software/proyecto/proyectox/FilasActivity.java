@@ -1,5 +1,8 @@
 package software.proyecto.proyectox;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -77,7 +80,7 @@ public class FilasActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main2, menu);
+        getMenuInflater().inflate(R.menu.menu_filas, menu);
         return true;
     }
 
@@ -89,8 +92,14 @@ public class FilasActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_logout) {
+                SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.PREFERENCIAS, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.clear();
+                editor.commit();
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
+
         }
 
         return super.onOptionsItemSelected(item);

@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnIngresar;
     EditText etUsuario,etContra;
     TextView tvRegistrar;
+    TextView tvAbout;
     Button bMapa;
     ProgressDialog progressDialog;
     Validacion validacion = Validacion.getInstance();
@@ -60,12 +61,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         etUsuario = (EditText) findViewById(R.id.etUsuario_AMain);
         etContra = (EditText)findViewById(R.id.etContra_AMain);
         tvRegistrar = (TextView) findViewById(R.id.tvRegistro_AMain);
+        tvAbout =(TextView)findViewById(R.id.tvAbout_AMain);
 
         btnIngresar = (Button) findViewById(R.id.bLogin_AMain);
         bMapa = (Button) findViewById(R.id.bMapa);
         bMapa.setOnClickListener(this);
         btnIngresar.setOnClickListener(this);
         tvRegistrar.setOnClickListener(this);
+        tvAbout.setOnClickListener(this);
 
 
 
@@ -119,6 +122,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.bMapa:
                 startActivity(new Intent(this,Maps.class));
+                break;
+            case R.id.tvAbout_AMain:
+                startActivity(new Intent(this,AboutActivity.class));
                 break;
         }
     }

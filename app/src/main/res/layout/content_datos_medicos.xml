@@ -1,0 +1,462 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_height="900dp"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:background="#d4ced7"
+        android:longClickable="false">
+
+
+
+
+
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Antecedentes Personales no Patologicos"
+            android:id="@+id/textView3"
+            android:textSize="24dp"
+            android:textColor="#171717"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="43dp" />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Tabaquismo:"
+            android:id="@+id/tvTabaquismo"
+            android:textSize="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/textView3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Alcoholismo:"
+            android:id="@+id/tvAlcoholismo"
+            android:textSize="16dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="165dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Deporte y/o \nActividad Fisica:"
+            android:id="@+id/tvDeporte"
+            android:textSize="16dp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/tvAlcoholismo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Cardiovasculares"
+            android:id="@+id/tvCardio"
+            android:textSize="16dp"
+            android:layout_below="@+id/textView4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp" />
+
+
+
+
+
+        <RadioGroup
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:id="@+id/radioGroup_AReg"
+            android:orientation="horizontal"
+            android:layout_alignTop="@+id/tvTabaquismo"
+            android:layout_alignRight="@+id/textView3"
+            android:layout_alignEnd="@+id/textView3"
+            android:layout_alignLeft="@+id/radioCardio"
+            android:layout_alignStart="@+id/radioCardio">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:id="@+id/rdbNo_Taba"
+                android:textSize="16dp"
+                android:layout_alignBottom="@+id/tvTabaquismo"
+                android:layout_centerHorizontal="true" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Si"
+                android:id="@+id/rdbSi_Taba"
+                android:textSize="16dp"
+                android:layout_alignTop="@+id/rdbNo_Taba"
+                android:layout_toRightOf="@+id/rdbNo_Taba"
+                android:layout_toEndOf="@+id/rdbNo_Taba"
+                android:layout_marginLeft="53dp"
+                android:layout_marginStart="53dp" />
+
+        </RadioGroup>
+
+        <RadioGroup
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:id="@+id/radioAlco"
+            android:orientation="horizontal"
+            android:layout_alignTop="@+id/tvAlcoholismo"
+            android:layout_alignLeft="@+id/radioGroup_AReg"
+            android:layout_alignStart="@+id/radioGroup_AReg"
+            android:layout_alignRight="@+id/textView3"
+            android:layout_alignEnd="@+id/textView3">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:id="@+id/rdbNo_Alco"
+                android:textSize="16dp"
+                android:layout_above="@+id/tvDeporte" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Si"
+                android:id="@+id/rdbSi_Alco"
+                android:textSize="16dp"
+                android:layout_alignBottom="@+id/tvAlcoholismo"
+                android:layout_marginLeft="53dp" />
+
+        </RadioGroup>
+
+        <RadioGroup
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:id="@+id/radioDeporte"
+            android:orientation="horizontal"
+            android:layout_below="@+id/radioAlco"
+            android:layout_alignLeft="@+id/radioAlco"
+            android:layout_alignStart="@+id/radioAlco"
+            android:layout_alignRight="@+id/textView3"
+            android:layout_alignEnd="@+id/textView3">
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:id="@+id/rdbNo_Depo"
+                android:textSize="16dp"
+                android:layout_alignTop="@+id/rdbSi_Depo"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Si"
+                android:id="@+id/rdbSi_Depo"
+                android:textSize="16dp"
+                android:layout_alignBottom="@+id/tvDeporte"
+                android:layout_alignLeft="@+id/rdbSi_Alco"
+                android:layout_alignStart="@+id/rdbSi_Alco"
+                android:layout_marginLeft="53dp" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Antecedentes Personales Patologicos"
+            android:id="@+id/textView4"
+            android:textSize="24dp"
+            android:textColor="#171717"
+            android:layout_below="@+id/radioDeporte"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="false"
+            android:layout_marginTop="20dp" />
+
+        <RadioGroup
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:id="@+id/radioCardio"
+            android:orientation="horizontal"
+            android:layout_alignTop="@+id/tvCardio"
+            android:layout_toRightOf="@+id/tvCardio"
+            android:layout_alignRight="@+id/textView4"
+            android:layout_alignEnd="@+id/textView4"
+            android:layout_marginLeft="20dp">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:id="@+id/rdbNo_Cardio"
+                android:textSize="16dp"
+                android:layout_alignBottom="@+id/tvCardio"
+                android:layout_alignLeft="@+id/rdbNo_Depo"
+                android:layout_alignStart="@+id/rdbNo_Depo"
+                android:layout_marginBottom="-450dp" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Si"
+                android:id="@+id/rdbSi_Cardio"
+                android:textSize="16dp"
+                android:layout_centerVertical="true"
+                android:layout_alignLeft="@+id/rdbSi_Depo"
+                android:layout_alignStart="@+id/rdbSi_Depo"
+                android:layout_marginLeft="50dp" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Hepatitis"
+            android:id="@+id/tvHepatitis"
+            android:textSize="16dp"
+            android:layout_below="@+id/radioCardio"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <RadioGroup
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:id="@+id/radioHepatitis"
+            android:orientation="horizontal"
+            android:layout_below="@+id/radioCardio"
+            android:layout_alignLeft="@+id/radioCardio"
+            android:layout_alignStart="@+id/radioCardio"
+            android:layout_alignRight="@+id/textView4"
+            android:layout_alignEnd="@+id/textView4">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:id="@+id/rdbNo_Hepa"
+                android:textSize="16dp"
+                android:layout_alignTop="@+id/rdbSi_Hepa"
+                android:layout_alignLeft="@+id/rdbNo_Cardio"
+                android:layout_alignStart="@+id/rdbNo_Cardio" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Si"
+                android:id="@+id/rdbSi_Hepa"
+                android:textSize="16dp"
+                android:layout_alignBottom="@+id/tvHepatitis"
+                android:layout_alignLeft="@+id/rdbSi_Cardio"
+                android:layout_alignStart="@+id/rdbSi_Cardio"
+                android:layout_marginLeft="50dp" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Tumores Malignos"
+            android:id="@+id/tvTumores"
+            android:textSize="16dp"
+            android:layout_marginTop="40dp"
+            android:layout_below="@+id/tvHepatitis"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <RadioGroup
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:id="@+id/radioTumores"
+            android:orientation="horizontal"
+            android:layout_alignTop="@+id/tvTumores"
+            android:layout_alignRight="@+id/textView4"
+            android:layout_alignEnd="@+id/textView4"
+            android:layout_alignLeft="@+id/radioHepatitis"
+            android:layout_alignStart="@+id/radioHepatitis">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:id="@+id/rdbNo_Tumor"
+                android:textSize="16dp"
+                android:layout_alignTop="@+id/rdbSi_Tumor"
+                android:layout_alignLeft="@+id/rdbNo_Hepa"
+                android:layout_alignStart="@+id/rdbNo_Hepa" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Si"
+                android:id="@+id/rdbSi_Tumor"
+                android:textSize="16dp"
+                android:layout_alignBottom="@+id/tvTumores"
+                android:layout_alignLeft="@+id/rdbSi_Hepa"
+                android:layout_alignStart="@+id/rdbSi_Hepa"
+                android:layout_marginLeft="50dp" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Sobrepeso"
+            android:id="@+id/tvPeso"
+            android:textSize="16dp"
+            android:layout_marginTop="43dp"
+            android:layout_below="@+id/tvTumores"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <RadioGroup
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:id="@+id/radioSobrepeso"
+            android:orientation="horizontal"
+            android:layout_alignTop="@+id/tvPeso"
+            android:layout_alignRight="@+id/textView4"
+            android:layout_alignEnd="@+id/textView4"
+            android:layout_alignLeft="@+id/radioTumores"
+            android:layout_alignStart="@+id/radioTumores">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:id="@+id/rdbNo_Peso"
+                android:textSize="16dp"
+                android:layout_alignTop="@+id/rdbSi_Peso"
+                android:layout_alignLeft="@+id/rdbNo_Tumor"
+                android:layout_alignStart="@+id/rdbNo_Tumor" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Si"
+                android:id="@+id/rdbSi_Peso"
+                android:textSize="16dp"
+                android:layout_alignBottom="@+id/tvPeso"
+                android:layout_alignLeft="@+id/rdbSi_Tumor"
+                android:layout_alignStart="@+id/rdbSi_Tumor"
+                android:layout_marginLeft="50dp" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Alergias:"
+            android:id="@+id/tvAlergia"
+            android:textSize="16dp"
+            android:layout_marginTop="43dp"
+            android:layout_below="@+id/tvPeso"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <EditText
+            android:id="@+id/etNombre_AReg"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:hint=""
+            android:inputType="textPersonName"
+            android:imeOptions="actionNext"
+            android:layout_alignBottom="@+id/tvAlergia"
+            android:layout_marginBottom="-10dp"
+            android:layout_toRightOf="@+id/tvPeso"
+            android:layout_toEndOf="@+id/tvPeso" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Otros:"
+            android:id="@+id/Otros"
+            android:textSize="24dp"
+            android:textColor="#171717"
+            android:layout_marginTop="28dp"
+            android:layout_below="@+id/tvAlergia"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Peso:"
+            android:id="@+id/tvpesop"
+            android:textSize="16dp"
+            android:layout_below="@+id/Otros"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp" />
+        <EditText
+            android:id="@+id/etpesol"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:hint="                        Libras"
+            android:inputType="textPersonName"
+            android:imeOptions="actionNext"
+            android:layout_alignBottom="@+id/tvpesop"
+            android:layout_alignRight="@+id/etNombre_AReg"
+            android:layout_alignEnd="@+id/etNombre_AReg"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="-5dp"
+            android:layout_toRightOf="@+id/tvAlergia"
+            android:layout_toEndOf="@+id/tvAlergia" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Estatura:"
+            android:id="@+id/tvEstatur"
+            android:textSize="16dp"
+            android:layout_below="@+id/tvpesop"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="70dp"
+            android:layout_marginTop="20dp" />
+
+        <EditText
+            android:id="@+id/etEstatura"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:hint="                        Pies"
+            android:inputType="textPersonName"
+            android:imeOptions="actionNext"
+            android:layout_below="@+id/etpesol"
+            android:layout_alignLeft="@+id/etpesol"
+            android:layout_alignStart="@+id/etpesol"
+            android:layout_alignRight="@+id/etpesol"
+            android:layout_alignEnd="@+id/etpesol" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:id="@+id/btnGuardar_AReg"
+            android:layout_below="@+id/tvEstatur"
+            android:layout_toRightOf="@+id/tvTumores"
+            android:layout_toEndOf="@+id/tvTumores" />
+
+
+
+
+    </RelativeLayout>
+</ScrollView>
