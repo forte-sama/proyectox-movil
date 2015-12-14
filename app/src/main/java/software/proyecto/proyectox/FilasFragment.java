@@ -1,35 +1,30 @@
 package software.proyecto.proyectox;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import modelos.Fila;
-import modelos.MensajeServer;
 import utilidades.API;
-import utilidades.CustomListAdapter;
-
-import static com.google.android.gms.internal.zzip.runOnUiThread;
+import utilidades.FilasListAdapter;
 
 public class FilasFragment extends Fragment {
     private ProgressDialog pDialog;
     private List<Fila> filaList = new ArrayList<Fila>();
     private ListView listView;
+    private TextView noFilas;
 
 
     private ListView listaFilas;
@@ -47,11 +42,12 @@ public class FilasFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_filas, container, false);
         listView = (ListView) rootView.findViewById(R.id.lista_FF);
-
+        noFilas = (TextView) rootView.findViewById(R.id.noFilas_FF);
+        noFilas.setAlpha(0.0f);
 
 
         Asincrono asinc = new Asincrono(this,filaList);
-        asinc.execute("cesarito");
+        asinc.execute("jozu789");
 
 
 
@@ -59,12 +55,14 @@ public class FilasFragment extends Fragment {
         return rootView;
 
     }
-    private class Asincrono extends AsyncTask<String,Void,List<Fila>>
+
+
+private class Asincrono extends AsyncTask<String,Void,List<Fila>>
     {
         private FilasFragment contexto;
         ProgressDialog progressDialog;
         List<Fila> filas;
-        CustomListAdapter adapter;
+        FilasListAdapter adapter;
         public Asincrono(FilasFragment contexto,List<Fila> filas)
         {
             super();
@@ -82,9 +80,26 @@ public class FilasFragment extends Fragment {
         @Override
         protected List<Fila> doInBackground(String... params)
         {
-            filaList = API.getInstance().request_filas(params[0]);
-            Log.d("jesus2", filaList.get(0).getTitulo_doctor());
 
+
+            List<Fila> filasResul;
+            filasResul = API.getInstance().request_filas(params[0]);
+            if(filasResul.get(0).getEstado_peticion().equals("0")){
+                getActivity().runOnUiThread(new Runnable() {
+                    public void run() {
+                        noFilas.setAlpha(0.0f);
+                    }
+                });
+                filaList=filasResul;
+                Log.d("jesus2", filaList.get(0).getTitulo_doctor());
+            }
+            else{
+                getActivity().runOnUiThread(new Runnable() {
+                    public void run() {
+                        noFilas.setAlpha(1.0f);
+                    }
+                });
+            }
 
             return filas;
 
@@ -94,8 +109,8 @@ public class FilasFragment extends Fragment {
         protected void onPostExecute(List<Fila> mensajeServer)
         {
             super.onPostExecute(mensajeServer);
-            adapter = new CustomListAdapter(getActivity(), filaList);
-            Log.d("jesus2", filaList.get(0).getTitulo_doctor());
+            adapter = new FilasListAdapter(getActivity(), filaList);
+
             listView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             for (Fila f : filaList){
@@ -134,10 +149,9 @@ public class FilasFragment extends Fragment {
                                 TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished))
                 );
             }
-            Log.d("jesus",fila.getTiempo_estimado());
                 fila.setTiempo_estimado_display(tiempoRestante);
                 fila.setTiempo_estimado(String.valueOf(millisUntilFinished/1000));
-            adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
 
         }
 

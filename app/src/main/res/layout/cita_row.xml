@@ -8,19 +8,10 @@
 
     <!-- Movie Title -->
 
-    <ImageView
-        android:id="@+id/thumbnail"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginRight="8dp"></ImageView>
-
     <TextView
         android:id="@+id/titulo_CR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/thumbnail"
-        android:layout_toRightOf="@+id/thumbnail"
         android:textSize="@dimen/title"
         android:textStyle="bold" />
 
@@ -31,31 +22,26 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/titulo_CR"
         android:layout_marginTop="1dip"
-        android:layout_toRightOf="@+id/thumbnail"
         android:textSize="@dimen/rating" />
 
     <!-- Genre -->
 
     <!-- Release Year -->
     <TextView
-        android:id="@+id/tiempoDisponible_LR"
+        android:id="@+id/fechaEstado_CR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/year"
         android:textSize="@dimen/year"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_toRightOf="@+id/textView2"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp" />
+        android:layout_alignTop="@+id/hora_CR"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tiempo disponible estimado:"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/thumbnail"
-        android:layout_alignLeft="@+id/nombreDoc_CR"
-        android:layout_alignStart="@+id/nombreDoc_CR"
-        android:textSize="12dp" />
+        android:id="@+id/hora_CR"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/fechaEstado_CR"
+        android:layout_alignStart="@+id/fechaEstado_CR" />
 
 </RelativeLayout>

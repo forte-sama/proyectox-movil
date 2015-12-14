@@ -139,7 +139,7 @@ public class FilasActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
 
             switch(position){
-                case 1: return PlaceholderFragment.newInstance(position + 1);
+                case 1: return CitasFragment.newInstance();
                 case 0 : return  FilasFragment.newInstance();
 
             }

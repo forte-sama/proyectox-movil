@@ -16,7 +16,7 @@ import modelos.Fila;
 import software.proyecto.proyectox.R;
 
 
-public class CustomListAdapter extends BaseAdapter {
+public class FilasListAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
     private List<Fila> filaItems;
@@ -25,7 +25,7 @@ public class CustomListAdapter extends BaseAdapter {
     private static final int TIEMPO_ROJO  = 10;
 
 
-    public CustomListAdapter(Activity activity, List<Fila> filaItems) {
+    public FilasListAdapter(Activity activity, List<Fila> filaItems) {
         this.activity = activity;
         this.filaItems = filaItems;
     }
@@ -55,8 +55,8 @@ public class CustomListAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.list_row, null);
 
 
-        TextView title = (TextView) convertView.findViewById(R.id.titulo_LR);
-        TextView nombre = (TextView) convertView.findViewById(R.id.nombreDoc_LR);
+        TextView title = (TextView) convertView.findViewById(R.id.titulo_CR);
+        TextView nombre = (TextView) convertView.findViewById(R.id.nombreDoc_CR);
         TextView tiempoRestante = (TextView) convertView.findViewById(R.id.tiempoDisponible_LR);
         ImageView semaforo = (ImageView) convertView.findViewById(R.id.thumbnail);
         //TextView horaLLegada = (TextView) convertView.findViewById(R.id.horaLLegada);

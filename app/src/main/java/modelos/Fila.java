@@ -6,6 +6,15 @@ public class Fila {
     private String hora_llegada;
     private String tiempo_estimado;
     private String tiempo_estimado_display;
+    private String estado_peticion;
+
+    public String getEstado_peticion() {
+        return estado_peticion;
+    }
+
+    public void setEstado_peticion(String estado_peticion) {
+        this.estado_peticion = estado_peticion;
+    }
 
     public String getTiempo_estimado_display() {
         return tiempo_estimado_display;

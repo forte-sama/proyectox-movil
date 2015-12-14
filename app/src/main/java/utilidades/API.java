@@ -1,8 +1,11 @@
 package utilidades;
 
+import android.content.Context;
 import android.util.Log;
 
 
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.android.gms.iid.InstanceID;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -21,11 +24,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import modelos.Cita;
 import modelos.Fila;
 import modelos.MensajeLogin;
 import modelos.MensajeServer;
 import modelos.PeticionFila;
 import modelos.UsuarioMovil;
+import software.proyecto.proyectox.R;
 
 /**
  * Created by Saleta on 11/17/2015.
@@ -135,6 +140,23 @@ public class API
 
         return Arrays.asList(mensaje);
     }
+
+    public static List<Cita> request_citas(String username){
+        String url = API_URL+"request_info_cita";
+        PeticionFila pet = new PeticionFila(username);
+        Gson gson = new Gson();
+        String data = gson.toJson(pet);
+        Log.d("jesus",data);
+
+        String result = conexion_http(url, data) ;
+        Log.d("jesus23",result);
+        Cita[] mensaje = gson.fromJson(result, Cita[].class);
+
+
+
+        return Arrays.asList(mensaje);
+    }
+
 
 
 
