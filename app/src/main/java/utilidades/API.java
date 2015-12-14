@@ -28,6 +28,7 @@ import modelos.Cita;
 import modelos.Fila;
 import modelos.MensajeLogin;
 import modelos.MensajeServer;
+import modelos.PeticionEdicion;
 import modelos.PeticionFila;
 import modelos.UsuarioMovil;
 import software.proyecto.proyectox.R;
@@ -53,12 +54,29 @@ public class API
 
     public static MensajeServer request_registro(String username,String password, String telefono, String email,
                                                  String nombre, String apellido, String sexo, String fecha_nacimiento,
-                                                 String tipo_sangre){
+                                                 String tipo_sangre,String cedula){
 
         String url = API_URL+"request_registro";
-        UsuarioMovil user = new UsuarioMovil(nombre,apellido,username,password,telefono,email,sexo,fecha_nacimiento,tipo_sangre);
+        UsuarioMovil user = new UsuarioMovil(nombre,apellido,username,password,telefono,email,sexo,fecha_nacimiento,tipo_sangre,cedula);
         Gson gson = new Gson();
         String data = gson.toJson(user);
+        Log.d("jesus",data);
+
+        String result = conexion_http(url, data) ;
+        Log.d("jesus",result);
+        MensajeServer mensaje = gson.fromJson(result, MensajeServer.class);
+
+        Log.d("jesus",mensaje.toString());
+        return mensaje;
+    }
+
+    public static MensajeServer request_edicion(String username,String password_vieja, String telefono_nuevo, String email_nuevo,
+                                                 String password_nueva){
+
+        String url = API_URL+"request_edicion";
+        PeticionEdicion pf = new PeticionEdicion(username,password_nueva,password_vieja,email_nuevo,telefono_nuevo);
+        Gson gson = new Gson();
+        String data = gson.toJson(pf);
         Log.d("jesus",data);
 
         String result = conexion_http(url, data) ;

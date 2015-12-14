@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -56,7 +57,7 @@ public class CitasListAdapter extends BaseAdapter {
         TextView nombre = (TextView) convertView.findViewById(R.id.nombreDoc_CR);
         TextView fechaEstado = (TextView) convertView.findViewById(R.id.fechaEstado_CR);
         TextView hora = (TextView) convertView.findViewById(R.id.hora_CR);
-
+        ImageView imagen = (ImageView) convertView.findViewById(R.id.thumbnail_CR);
 
 
         Cita c = citaItems.get(position);
@@ -64,12 +65,12 @@ public class CitasListAdapter extends BaseAdapter {
         title.setText(c.getTitulo_doctor());
         nombre.setText(c.getNombre_doctor());
         hora.setText(c.getHora_programada());
-
+        fechaEstado.setText(c.getFecha());
         if(c.getEstado_cita().equals("1")){
-            fechaEstado.setText(c.getFecha());
+            imagen.setImageResource(R.drawable.luegof);
         }
         else{
-            fechaEstado.setText("HOY");
+            imagen.setImageResource(R.drawable.hoyf);
         }
         return convertView;
     }

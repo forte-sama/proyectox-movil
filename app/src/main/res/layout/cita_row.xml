@@ -2,16 +2,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/list_row_selector"
+    android:background="#bfcfce"
     android:padding="8dp" >
 
 
     <!-- Movie Title -->
 
+    <ImageView
+        android:id="@+id/thumbnail_CR"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="8dp"></ImageView>
+
     <TextView
         android:id="@+id/titulo_CR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/thumbnail_CR"
+        android:layout_toRightOf="@+id/thumbnail_CR"
         android:textSize="@dimen/title"
         android:textStyle="bold" />
 
@@ -22,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/titulo_CR"
         android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/thumbnail_CR"
         android:textSize="@dimen/rating" />
 
     <!-- Genre -->
@@ -33,15 +43,22 @@
         android:layout_height="wrap_content"
         android:textColor="@color/year"
         android:textSize="@dimen/year"
-        android:layout_alignTop="@+id/hora_CR"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/nombreDoc_CR"
+        android:layout_toRightOf="@+id/thumbnail_CR"
+        android:layout_toEndOf="@+id/thumbnail_CR" />
 
     <TextView
+        android:id="@+id/hora_CR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/hora_CR"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/fechaEstado_CR"
-        android:layout_alignStart="@+id/fechaEstado_CR" />
+        android:textColor="@color/year"
+        android:textSize="@dimen/year"
+        android:layout_marginLeft="43dp"
+        android:layout_marginStart="43dp"
+        android:layout_alignTop="@+id/fechaEstado_CR"
+        android:layout_toRightOf="@+id/fechaEstado_CR"
+        android:layout_toEndOf="@+id/fechaEstado_CR" />
+
 
 </RelativeLayout>

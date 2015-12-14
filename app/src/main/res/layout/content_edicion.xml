@@ -1,12 +1,12 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="600dp">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
-        android:layout_height="900dp"
+        android:layout_height="600dp"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:background="#d4ced7"
@@ -14,21 +14,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Editar datos personales"
+            android:text="Nuevos datos de usuario"
             android:id="@+id/textView3"
-            android:layout_marginTop="25dp"
             android:textSize="24dp"
             android:textColor="#171717"
+            android:layout_marginTop="63dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentStart="true" />
 
 
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="40dp"
-            android:id="@+id/etTelefono_AReg"
+            android:id="@+id/etTelefono_AEdi"
             android:inputType="date"
             android:editable="false"
             android:enabled="true"
@@ -36,39 +36,21 @@
             android:focusableInTouchMode="true"
             android:hint="Teléfono"
             android:layout_below="@+id/textView3"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/etNombreUsuario_AReg"
-            android:layout_alignEnd="@+id/etNombreUsuario_AReg" />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:id="@+id/etNombreUsuario_AReg"
-            android:inputType="date|textNoSuggestions"
-            android:editable="false"
-            android:enabled="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:hint="Nombre de Usuario"
-            android:layout_below="@+id/etTelefono_AReg"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/etContra_old"
-            android:layout_alignEnd="@+id/etContra_old" />
+            android:layout_alignRight="@+id/textView3"
+            android:layout_alignEnd="@+id/textView3"
+            android:layout_marginTop="22dp" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/etContra_old"
+            android:id="@+id/etContraActual_AEdi"
             android:hint="Contraseña Actual"
-            android:layout_below="@+id/etNombreUsuario_AReg"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/etContra_AReg"
-            android:layout_alignEnd="@+id/etContra_AReg" />
+            android:layout_marginTop="39dp"
+            android:layout_below="@+id/etTelefono_AEdi"
+            android:layout_alignLeft="@+id/etTelefono_AEdi"
+            android:layout_alignStart="@+id/etTelefono_AEdi" />
 
 
         <EditText
@@ -76,13 +58,12 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/etContra_AReg"
+            android:id="@+id/etContraNueva_AEdi"
             android:hint="Nueva Contraseña"
-            android:layout_below="@+id/etContra_old"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/etContra_new"
-            android:layout_alignEnd="@+id/etContra_new" />
+            android:layout_marginTop="43dp"
+            android:layout_below="@+id/etContraActual_AEdi"
+            android:layout_alignLeft="@+id/etContraActual_AEdi"
+            android:layout_alignStart="@+id/etContraActual_AEdi" />
 
 
 
@@ -91,34 +72,36 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/etContra_new"
+            android:id="@+id/etContraRep_AEdi"
             android:hint="Repita contraseña"
-            android:layout_below="@+id/etContra_AReg"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_marginTop="39dp"
+            android:layout_below="@+id/etContraNueva_AEdi"
+            android:layout_alignLeft="@+id/etCorreo_AEdi"
+            android:layout_alignStart="@+id/etCorreo_AEdi" />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="40dp"
-            android:id="@+id/etCorreo_AReg"
+            android:id="@+id/etCorreo_AEdi"
             android:inputType="textEmailAddress"
             android:editable="false"
             android:enabled="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:hint="Correo Eletrónico"
-            android:layout_below="@+id/etContra_new"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/etContra_new"
-            android:layout_alignEnd="@+id/etContra_new" />
+            android:layout_marginTop="38dp"
+            android:layout_below="@+id/etContraRep_AEdi"
+            android:layout_alignLeft="@+id/etContraNueva_AEdi"
+            android:layout_alignStart="@+id/etContraNueva_AEdi"
+            android:layout_alignRight="@+id/etContraNueva_AEdi"
+            android:layout_alignEnd="@+id/etContraNueva_AEdi" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Guardar"
-            android:id="@+id/btnRegistrar_AReg"
-            android:layout_centerVertical="true"
+            android:id="@+id/btnGuardar_AEdi"
+            android:layout_below="@+id/etCorreo_AEdi"
             android:layout_centerHorizontal="true" />
 
     </RelativeLayout>

@@ -24,35 +24,11 @@ import utilidades.API;
 import utilidades.Validacion;
 
 
-import android.app.DatePickerDialog;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Looper;
-import android.os.StrictMode;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
-import android.widget.Toast;
-
-
-
-import java.util.Calendar;
-
 import modelos.MensajeServer;
-import utilidades.API;
-import utilidades.Validacion;
 
 public class Register extends AppCompatActivity implements View.OnClickListener{
 
-    EditText etNombre, etApellido, etFecha, etTelefono, etUsuario, etContras, etCorreo;
+    EditText etNombre, etApellido, etFecha, etTelefono, etUsuario, etContras, etCorreo,etCedula;
     RadioGroup rgGrupo;
     Spinner spinner;
     Button btnRegistrar;
@@ -74,10 +50,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         etTelefono = (EditText) findViewById(R.id.etTelefono_AReg);
         etFecha.setOnClickListener(this);
         etUsuario = (EditText) findViewById(R.id.etNombreUsuario_AReg);
-        etContras = (EditText) findViewById(R.id.etContra_AReg);
+        etContras = (EditText) findViewById(R.id.etContraNueva_AEdi);
         etCorreo = (EditText) findViewById(R.id.etCorreo_AReg);
-        toolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        toolbar.setTitle("Registro");
+        etCedula = (EditText) findViewById(R.id.etCedula_AReg);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_registro);
+        toolbar.setTitle("");
         btnRegistrar = (Button) findViewById(R.id.btnRegistrar_AReg);
         btnRegistrar.setOnClickListener(this);
         RadioButton rb = (RadioButton)findViewById(R.id.rdbMasculino_AReg);
@@ -92,10 +69,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
         etCorreo = (EditText) findViewById(R.id.etCorreo_AReg);
 
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
 
         etUsuario.setOnFocusChangeListener(new View.OnFocusChangeListener()
         {
@@ -202,7 +175,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                     etTelefono.getText().toString(), etCorreo.getText().toString(),
                     etNombre.getText().toString(), etApellido.getText().toString(),
                     sexo, etFecha.getText().toString(),
-                    spinner.getSelectedItem().toString());
+                    spinner.getSelectedItem().toString(),etCedula.getText().toString());
 
         }
     }
@@ -303,7 +276,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
             MensajeServer resultado=API.getInstance().request_registro(params[0], params[1],params[2],params[3],
                     params[4], params[5],params[6],params[7],
-                    params[8]);
+                    params[8],params[9]);
             return resultado;
 
         }
@@ -330,6 +303,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                     contexto.etCorreo.setError("Alguien se ha registrado utilizando este correo.");
                     contexto.etUsuario.setError("Este usuario ya existe.");
                     break;
+                case 6:
+                    contexto.etTelefono.setError("Alguien se ha registrado utilizando este teléfono.");
             }
         }
     }

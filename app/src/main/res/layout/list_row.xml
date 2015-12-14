@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/list_row_selector"
+    android:background="#bfcfce"
     android:padding="8dp" >
 
 
@@ -57,5 +57,7 @@
         android:layout_alignLeft="@+id/nombreDoc_CR"
         android:layout_alignStart="@+id/nombreDoc_CR"
         android:textSize="12dp" />
+
+
 
 </RelativeLayout>

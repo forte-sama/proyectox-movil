@@ -6,7 +6,7 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
-        android:layout_height="900dp"
+        android:layout_height="1000dp"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:background="#d4ced7"
@@ -65,12 +65,12 @@
             android:layout_height="wrap_content"
             android:text="Datos Personales"
             android:id="@+id/textView3"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="64dp"
             android:textSize="24dp"
             android:textColor="#171717"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentStart="true" />
 
         <EditText
             android:layout_width="200dp"
@@ -111,12 +111,12 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:hint="Fecha de Nacimiento..."
-            android:layout_marginTop="28dp"
-            android:layout_below="@+id/etTelefono_AReg"
+            android:layout_marginTop="29dp"
+            android:layout_below="@+id/etCedula_AReg"
             android:layout_alignLeft="@+id/etTelefono_AReg"
             android:layout_alignStart="@+id/etTelefono_AReg"
             android:layout_alignRight="@+id/etTelefono_AReg"
-            android:layout_alignEnd="@+id/etTelefono_AReg"/>
+            android:layout_alignEnd="@+id/etTelefono_AReg" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -152,7 +152,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/etContra_AReg"
+            android:id="@+id/etContraNueva_AEdi"
             android:layout_below="@+id/etNombreUsuario_AReg"
             android:layout_alignLeft="@+id/etNombreUsuario_AReg"
             android:layout_alignStart="@+id/etNombreUsuario_AReg"
@@ -172,11 +172,11 @@
             android:focusableInTouchMode="true"
             android:hint="Correo Eletrónico"
             android:layout_marginTop="30dp"
-            android:layout_below="@+id/etContra_AReg"
-            android:layout_alignLeft="@+id/etContra_AReg"
-            android:layout_alignStart="@+id/etContra_AReg"
-            android:layout_alignRight="@+id/etContra_AReg"
-            android:layout_alignEnd="@+id/etContra_AReg"/>
+            android:layout_below="@+id/etContraNueva_AEdi"
+            android:layout_alignLeft="@+id/etContraNueva_AEdi"
+            android:layout_alignStart="@+id/etContraNueva_AEdi"
+            android:layout_alignRight="@+id/etContraNueva_AEdi"
+            android:layout_alignEnd="@+id/etContraNueva_AEdi"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -209,6 +209,23 @@
             android:layout_below="@+id/etCorreo_AReg"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"/>
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/etCedula_AReg"
+            android:inputType="date"
+            android:editable="false"
+            android:enabled="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="Cédula"
+            android:layout_marginTop="31dp"
+            android:layout_below="@+id/etTelefono_AReg"
+            android:layout_alignLeft="@+id/etFecha_AReg"
+            android:layout_alignStart="@+id/etFecha_AReg"
+            android:layout_alignRight="@+id/etFecha_AReg"
+            android:layout_alignEnd="@+id/etFecha_AReg" />
 
     </RelativeLayout>
 </ScrollView>

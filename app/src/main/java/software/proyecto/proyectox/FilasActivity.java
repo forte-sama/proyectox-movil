@@ -65,14 +65,6 @@ public class FilasActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
     }
 
@@ -99,6 +91,9 @@ public class FilasActivity extends AppCompatActivity {
                 editor.commit();
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
+
+        }else if (id == R.id.action_edit_datos){
+            startActivity(new Intent(this, EdicionActivity.class));
 
         }
 

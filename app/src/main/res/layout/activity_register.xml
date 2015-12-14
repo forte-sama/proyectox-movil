@@ -8,13 +8,24 @@
     tools:context="software.proyecto.proyectox.Register">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
+        android:id="@+id/toolbar_registro"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#44464c"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="\nRegistro"
+            android:id="@+id/toolbar_title"
+            android:textColor="#ffffff"
+            android:singleLine="false"
+            android:textSize="20dp" />
+
+    </android.support.v7.widget.Toolbar>
 
     <include layout="@layout/content_register" />
 

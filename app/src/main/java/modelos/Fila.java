@@ -7,6 +7,10 @@ public class Fila {
     private String tiempo_estimado;
     private String tiempo_estimado_display;
     private String estado_peticion;
+    private String turnos_restantes;
+    private String nombre_asistente;
+    private String estado;
+
 
     public String getEstado_peticion() {
         return estado_peticion;
@@ -23,10 +27,6 @@ public class Fila {
     public void setTiempo_estimado_display(String tiempo_estimado_display) {
         this.tiempo_estimado_display = tiempo_estimado_display;
     }
-
-    private String turnos_restantes;
-    private String nombre_asistente;
-    private String estado;
 
     public String getNombre_asistente() {
         return nombre_asistente;
