@@ -21,7 +21,7 @@ public class FilasListAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private List<Fila> filaItems;
     private TextView year;
-    private static final int TIEMPO_AMARILLO  = 20;
+    private static final int TIEMPO_AMARILLO  = 60;
     private static final int TIEMPO_ROJO  = 10;
 
 
@@ -58,8 +58,9 @@ public class FilasListAdapter extends BaseAdapter {
         TextView title = (TextView) convertView.findViewById(R.id.titulo_CR);
         TextView nombre = (TextView) convertView.findViewById(R.id.nombreDoc_CR);
         TextView tiempoRestante = (TextView) convertView.findViewById(R.id.tiempoDisponible_LR);
+        TextView esCita = (TextView) convertView.findViewById(R.id.tvEsCita_LR);
         ImageView semaforo = (ImageView) convertView.findViewById(R.id.thumbnail);
-        //TextView horaLLegada = (TextView) convertView.findViewById(R.id.horaLLegada);
+
 
 
         Fila f = filaItems.get(position);
@@ -73,6 +74,12 @@ public class FilasListAdapter extends BaseAdapter {
         }
         else
             semaforo.setImageResource(R.drawable.semaforo_verde);
+        if(f.getEs_cita().equals("true")){
+            esCita.setText("Cita");
+        }
+        else{
+            esCita.setText("");
+        }
         title.setText(f.getTitulo_doctor());
         nombre.setText(f.getNombre_doctor());
         tiempoRestante.setText(f.getTiempo_estimado_display());

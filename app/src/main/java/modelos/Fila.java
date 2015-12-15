@@ -10,7 +10,32 @@ public class Fila {
     private String turnos_restantes;
     private String nombre_asistente;
     private String estado;
+    private String es_cita;
+    private String cod_turno;
 
+    public String getCod_turno() {
+        return cod_turno;
+    }
+
+    public void setCod_turno(String cod_turno) {
+        this.cod_turno = cod_turno;
+    }
+
+    public String getHora_llegada() {
+        return hora_llegada;
+    }
+
+    public void setHora_llegada(String hora_llegada) {
+        this.hora_llegada = hora_llegada;
+    }
+
+    public String getEs_cita() {
+        return es_cita;
+    }
+
+    public void setEs_cita(String es_cita) {
+        this.es_cita = es_cita;
+    }
 
     public String getEstado_peticion() {
         return estado_peticion;

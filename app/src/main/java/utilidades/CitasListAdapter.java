@@ -3,6 +3,7 @@ package utilidades;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,9 @@ public class CitasListAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private List<Cita> citaItems;
     private TextView year;
-
+    SharedPreferences sharedpreferences;
+    public static final String PREFERENCIAS = "session" ;
+    public static final String USUARIO = "username";
 
     public CitasListAdapter(Activity activity, List<Cita> citaItems) {
         this.activity = activity;

@@ -37,7 +37,6 @@ public class EdicionActivity extends AppCompatActivity implements View.OnClickLi
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_edicion);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         nombreUsuario = sharedpreferences.getString(USER, "");
         Log.d("jesus",nombreUsuario);

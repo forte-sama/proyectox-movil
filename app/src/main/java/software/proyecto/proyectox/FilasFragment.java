@@ -1,6 +1,9 @@
 package software.proyecto.proyectox;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -9,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,7 +29,9 @@ public class FilasFragment extends Fragment {
     private List<Fila> filaList = new ArrayList<Fila>();
     private ListView listView;
     private TextView noFilas;
-
+    SharedPreferences sharedpreferences;
+    public static final String PREFERENCIAS = "session" ;
+    public static final String USUARIO = "username";
 
     private ListView listaFilas;
 
@@ -44,13 +50,33 @@ public class FilasFragment extends Fragment {
         listView = (ListView) rootView.findViewById(R.id.lista_FF);
         noFilas = (TextView) rootView.findViewById(R.id.noFilas_FF);
         noFilas.setAlpha(0.0f);
+        sharedpreferences = getActivity().getSharedPreferences(PREFERENCIAS, Context.MODE_PRIVATE);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Fila fila =filaList.get(position);
+                Intent intent = new Intent(getContext(), FilaDetalleActivity.class);
+                Bundle bun = new Bundle();
+                bun.putString("nombre_doctor",fila.getNombre_doctor());
+                bun.putString("titulo_doctor",fila.getTitulo_doctor());
+                bun.putString("hora_llegada",fila.getHoraLLegada());
+                bun.putString("tiempo_estimado",fila.getTiempo_estimado());
+                bun.putString("nombre_asistente",fila.getNombre_asistente());
+                bun.putString("estado",fila.getEstado());
+                bun.putString("tiempo_estimado_display",fila.getTiempo_estimado_display());
+                bun.putString("turnos_restantes",fila.getTurnos_restantes());
+                bun.putString("cod_fila",fila.getCod_turno());
+                intent.putExtras(bun);
+                startActivity(intent);
+
+            }
+        });
 
 
         Asincrono asinc = new Asincrono(this,filaList);
-        asinc.execute("jozu789");
-
-
-
+        asinc.execute(sharedpreferences.getString(USUARIO,""));
 
         return rootView;
 

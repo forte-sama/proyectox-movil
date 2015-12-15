@@ -160,7 +160,7 @@ public class FilasActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Filas";
+                    return "Turnos";
                 case 1:
                     return "Citas";
             }

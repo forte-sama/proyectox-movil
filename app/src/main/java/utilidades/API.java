@@ -30,6 +30,7 @@ import modelos.MensajeLogin;
 import modelos.MensajeServer;
 import modelos.PeticionEdicion;
 import modelos.PeticionFila;
+import modelos.PeticionSalida;
 import modelos.UsuarioMovil;
 import software.proyecto.proyectox.R;
 
@@ -103,6 +104,22 @@ public class API
         return mensaje;
     }
 
+    public static MensajeServer request_salida(String codTurno){
+
+        String url = API_URL+"request_salida_fila";
+        PeticionSalida msg = new PeticionSalida(codTurno);
+        Gson gson = new Gson();
+        String data = gson.toJson(msg);
+        Log.d("jesus",data);
+
+        String result = conexion_http(url, data);
+        Log.d("jesus",result);
+        MensajeServer mensaje = gson.fromJson(result, MensajeServer.class);
+
+        Log.d("jesus",mensaje.toString());
+        return mensaje;
+    }
+
     private static String conexion_http(String url, String json_request){
         HttpURLConnection httpcon;
         String result = null;
@@ -153,6 +170,8 @@ public class API
         String result = conexion_http(url, data) ;
         Log.d("jesus",result);
         Fila[] mensaje = gson.fromJson(result, Fila[].class);
+
+
 
 
 
